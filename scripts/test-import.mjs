@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {importDxf} from '../src/cad-import.mjs';
+const d=importDxf(fs.readFileSync('dist/data/prueba-cad.dxf','utf8'),'prueba-cad.dxf');
+assert.equal(d.objects.length,5);assert.equal(d.units,'mm');
+assert.equal(new Set(d.objects.map(o=>o.id)).size,d.objects.length);
+const c=d.objects.find(o=>o.type==='CIRCLE');assert.equal(c.layer,'Equipo');
+assert.ok(Math.abs(Math.min(...c.points.map(p=>p[0]))-20)<.02);
+assert.ok(Math.abs(Math.max(...c.points.map(p=>p[1]))-40)<.02);
+const curved=d.objects.find(o=>o.type==='LWPOLYLINE'&&o.layer==='Equipo');assert.ok(curved.points.length>10);assert.ok(Math.abs(Math.min(...curved.points.map(p=>p[1]))-20)<.01);
+assert.throws(()=>importDxf('invalid'),/DXF ASCII/);
+assert.throws(()=>importDxf('AutoCAD Binary DXF'),/binario/);
+console.log('PASS: real DXF parsing, block transform, inherited layers, bulge arc, unique IDs, units, malformed input');

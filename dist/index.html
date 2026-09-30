@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#071b28" />
+    <title>ArchGlancer BUAP-UDLAP</title>
+    <meta name="description" content="Visor arquitectónico por capas para infraestructura, cobertura y componentes del proyecto CTC." />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="v2.css" />
+    <link rel="stylesheet" href="cad.css" />
+    <link rel="stylesheet" href="renders.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="ArchGlancer, inicio">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span><b>ARCH</b>GLANCER<small>BUAP-UDLAP · CAD / PDF / RENDERS</small></span>
+        </a>
+        <div class="institution-logos" aria-label="BUAP y UDLAP">
+          <img class="institution-buap" src="assets/branding/buap.png" alt="BUAP — Benemérita Universidad Autónoma de Puebla" />
+          <span aria-hidden="true"></span>
+          <img class="institution-udlap" src="assets/branding/udlap.png" alt="UDLAP — Universidad de las Américas Puebla" />
+        </div>
+        <div class="topbar-status">
+          <span class="live-dot"></span>
+          <button class="tool-button" id="loadDwg">Cargar DWG</button>
+          <input hidden id="dwgFile" type="file" accept=".dwg" aria-label="Seleccionar archivo DWG">
+          <button class="tool-button" id="cadTab" aria-pressed="true">Datasets CAD</button>
+          <button class="tool-button" id="pdfTab" aria-pressed="false">PDF generado</button>
+          <button class="tool-button" id="rendersTab" aria-pressed="false">Renders</button>
+          <a class="tool-button" href="manual.html" target="_blank" rel="noopener">Manual</a><button class="icon-button" id="helpButton" aria-label="Mostrar ayuda">?</button>
+        </div>
+      </header>
+
+      <aside class="rail" hidden></aside>
+      <main class="workspace" hidden></main>
+    </div>
+
+    <dialog id="helpDialog">
+      <button id="closeHelp" aria-label="Cerrar ayuda">×</button>
+      <p class="eyebrow">ARCHGLANCER · AYUDA</p>
+      <h2>PDF por piso desde CAD</h2><p>Carga un DWG o DXF. Revisa las vistas extraídas del archivo, selecciona las correspondientes a tus pisos y genera sus PDF. Puedes delimitar pisos dentro del modelo. Las vistas no implican automáticamente niveles del edificio.</p>
+      <p><a href="data/prueba-cad.dxf" download>DXF de prueba</a> · <a href="licenses/archglancer-source.tar.gz" download>Código fuente</a> · <a href="licenses/libredwg-source-v0.7.14.tar.gz" download>Fuentes del motor DWG</a> · <a href="licenses/GPL-3.txt">GPL</a> · <a href="licenses/dxf-parser-MIT.txt">MIT</a></p>
+    </dialog>
+    
+    <script src="cad.js"></script>
+    <script src="renders.js"></script>
+    <link rel="stylesheet" href="production.css">
+    <script type="module" src="production.js"></script>
+  </body>
+</html>

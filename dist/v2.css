@@ -1,0 +1,22 @@
+/* Capa visual v2: controles legibles y superficie técnica de alto contraste. */
+.shell{grid-template-columns:88px 1fr}
+.workspace{grid-template-columns:minmax(0,1fr) 330px}
+.viewer-card{grid-template-rows:auto auto minmax(420px,1fr) auto;border-radius:14px;overflow:hidden}
+.panel{border-radius:12px;overflow:hidden;box-shadow:none}
+.viewport{background-color:#152a38;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px)}
+.comparison-toolbar{display:flex;align-items:center;gap:16px;padding:12px 18px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.comparison-toolbar label{display:flex;gap:10px;align-items:center;font-size:14px}
+.comparison-toolbar [hidden]{display:none}
+select{padding:8px;border:1px solid var(--line);border-radius:6px;background:white;font:inherit}
+.floor-button{width:58px;height:48px;font-size:14px}
+.rail p,.eyebrow,.brand small,.panel-title,.panel-title b,.source-pill,.coordinates,.viewer-foot,.viewer-foot strong{font-size:12px}
+.tool-button,.layer-copy b,.layer-row label,.sources-panel li{font-size:14px}
+.layer-copy small,.sources-panel small,.metric-grid span{font-size:12px}
+.visibility{width:30px;height:30px}
+.layer-row{grid-template-columns:30px 1fr 14px}
+.metric-grid strong{font-size:30px}
+.viewer-foot{flex-wrap:wrap;padding:10px;gap:10px}
+.viewer-card:fullscreen{height:100vh;width:100vw;border-radius:0}
+@media(max-width:1100px){.workspace{grid-template-columns:1fr}.viewer-card{grid-template-rows:auto auto 60vh auto}}
+@media(max-width:680px){.shell{grid-template-columns:60px 1fr}.floor-button{width:42px}.brand small{font-size:10px}.head-actions{max-width:110px}.viewer-head{padding:12px}.eyebrow{letter-spacing:0;font-size:12px}.comparison-toolbar{padding:10px}.comparison-toolbar label{flex-wrap:wrap}.rail p{font-size:10px}}
+.shell{grid-template-rows:auto 1fr}.topbar{min-height:88px;gap:22px;padding-top:14px;padding-bottom:14px;flex-wrap:wrap}.institution-logos{display:flex;align-items:center;justify-content:center;gap:22px;flex:0 0 auto}.institution-logos img{display:block;object-fit:contain;height:auto}.institution-buap{width:112px}.institution-udlap{width:145px}.institution-logos>span{width:1px;height:34px;background:#ffffff40}@media(max-width:900px){.institution-logos{order:3;width:100%;padding:12px 0 2px;border-top:1px solid #ffffff20}.institution-buap{width:100px}.institution-udlap{width:130px}}@media(max-width:440px){.topbar-status{width:100%;justify-content:center}.topbar .brand{margin:auto}.institution-logos{gap:18px}}

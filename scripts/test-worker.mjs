@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+const messages=[];
+globalThis.self={location:{href:new URL('../dist/cad-engine/cad-worker.js',import.meta.url).href},postMessage:m=>messages.push(m)};
+await import('../dist/cad-engine/cad-worker.js');
+await self.onmessage({data:{file:new File([fs.readFileSync('dist/data/prueba-cad.dxf')],'prueba.dxf')}});
+assert.equal(messages.at(-1).dataset.objects.length,5);
+await self.onmessage({data:{file:new File(['not a dwg'],'bad.dwg')}});
+assert.match(messages.at(-1).error,/cabecera/);
+console.log('PASS: compiled worker DXF load and invalid DWG rejection');
