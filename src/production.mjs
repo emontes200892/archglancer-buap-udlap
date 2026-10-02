@@ -1,3 +1,4 @@
+import {setupPdfWheel} from './pdf-navigation.mjs';
 import {compatibility,UNIT_MM} from './project-analysis.mjs';
 import {setupFloorSheets} from './floor-sheets.mjs';
 import * as pdfjs from 'pdfjs-dist/build/pdf.mjs';
@@ -37,6 +38,13 @@ $('openPdf').onclick=()=>$('pdfFile').click();$('pdfFile').onchange=e=>{const fi
 $('pdfPrev').onclick=()=>{if(pdf&&pageNo>1){pageNo--;render();}};$('pdfNext').onclick=()=>{if(pdf&&pageNo<pdf.numPages){pageNo++;render();}};
 $('pdfPage').onchange=e=>{if(pdf){pageNo=Math.max(1,Math.min(pdf.numPages,Math.floor(Number(e.target.value)||1)));render();}};
 $('pdfPlus').onclick=()=>{zoom=Math.min(8,zoom*1.25);render();};$('pdfMinus').onclick=()=>{zoom=Math.max(.05,zoom/1.25);render();};$('pdfFit').onclick=fitPdf;
+const pdfSurface=root.querySelector('.pdf-scroll');
+setupPdfWheel(pdfSurface,{hasDocument:()=>!!pdf,getZoom:()=>zoom,setZoom:value=>{zoom=value;$('pdfScale').textContent=Math.round(zoom*100)+' %';},redraw:render});
+const wheelHelp=document.createElement('p');wheelHelp.className='pdf-wheel-help';wheelHelp.textContent='Rueda sobre el PDF: acercar / alejar. Arrastra para desplazar. Ajustar: ver la hoja completa.';pdfSurface.before(wheelHelp);
+let pdfDrag=null;
+pdfSurface.addEventListener('pointerdown',e=>{if(!pdf||e.button!==0)return;pdfDrag={x:e.clientX,y:e.clientY,left:pdfSurface.scrollLeft,top:pdfSurface.scrollTop};pdfSurface.setPointerCapture(e.pointerId);pdfSurface.classList.add('dragging');});
+pdfSurface.addEventListener('pointermove',e=>{if(!pdfDrag)return;pdfSurface.scrollLeft=pdfDrag.left+pdfDrag.x-e.clientX;pdfSurface.scrollTop=pdfDrag.top+pdfDrag.y-e.clientY;});
+for(const type of ['pointerup','pointercancel','lostpointercapture'])pdfSurface.addEventListener(type,()=>{pdfDrag=null;pdfSurface.classList.remove('dragging');});
 $('makePdf').onclick=()=>action(async()=>{const bytes=await pdfExport(window.archCad.snapshot(),{selectedViews:$('pdfScope').value==='floors'?selectedFloors():null,paper:$('pdfPaper').value,progress:status});await loadPdf(new File([bytes],'plano-archglancer.pdf',{type:'application/pdf'}));status('PDF generado. Incluye un informe de omisiones al final.');});
 $('saveProject').onclick=()=>action(async()=>{
  selectedFloors();const cad=window.archCad.snapshot();if(!cad.data)throw Error('Espera a que termine de cargar el dibujo.');const renders=window.archRenders.snapshot(),manifest={schema:'archglancer-project/1',name:$('projectName').value,created:new Date().toISOString(),renders:[],cad:'cad.json',original:null,pdf:null,cadState:{visible:cad.visible,showText:cad.showText,view:cad.view},printSettings:Object.fromEntries(['pdfPaper','pdfOrientation','pdfUnits','pdfDrawingScale','pdfLineWidth'].map(id=>[id,$(id).value]))},files={'cad.json':strToU8(JSON.stringify(cad.data))};let bytes=files['cad.json'].length;

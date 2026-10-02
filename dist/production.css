@@ -3,3 +3,11 @@
 .floor-panel{padding:16px;border-bottom:1px solid #486371}.floor-panel h2{font-size:18px;margin:0}.floor-panel p{font-size:14px;color:#bfd0db}.floor-row{display:flex;gap:8px;padding:6px;align-items:center}.floor-row input[type=text],.floor-row input:not([type]){min-width:0;flex:1;background:#102f40;color:white;border:1px solid #486371;padding:8px;font-size:14px}.floor-row button{white-space:nowrap}#floorList{max-height:260px;overflow:auto}.crop-box{position:absolute;border:2px dashed #62daca;background:#62daca22;pointer-events:none}@media(max-width:600px){.floor-row{flex-wrap:wrap}.floor-row input:not([type]){width:70%}}
 
 .floor-row{flex-wrap:wrap;border-bottom:1px solid #314f60}.floor-row select{max-width:180px;padding:8px;background:#102f40;color:white;font:inherit;border:1px solid #486371}.floor-row input[placeholder]{flex-basis:100%;font-size:14px}.floor-row input:not([type]){min-width:120px}.pdf-controls select{max-width:100%}.pdf-controls label{flex-wrap:wrap}#renderFloor{max-width:260px}@media(max-width:600px){.floor-row input:not([type]){width:55%;min-width:80px}.pdf-controls{padding:8px}}
+
+.document-workspace{background:#edf3f6;color:#12384d}
+.document-workspace .pdf-controls,.document-workspace #pdfStatus,.document-workspace #pdfScale,.document-workspace #pdfCount{color:#12384d}
+.document-workspace .pdf-wheel-help{color:#12384d;font-size:14px;margin:8px 12px 14px}
+.document-workspace #pdfStatus{font-weight:600}
+.document-workspace .tool-button:hover{background:#b84b00;color:#fff}
+.document-workspace .pdf-scroll{cursor:grab;touch-action:none;overscroll-behavior:contain}
+.document-workspace .pdf-scroll.dragging{cursor:grabbing}
