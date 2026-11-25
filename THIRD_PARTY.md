@@ -24,3 +24,9 @@
 Application source is available as dist/licenses/archglancer-source.tar.gz and in
 the supplied code ZIP. CAD integration code is GPL-3.0-or-later, without warranty.
 User drawings, raster PDF pages, logos and datasets are excluded from code licensing.
+
+- svgpath 2.6.0, Vitaly Puzrin, MIT. Bundled in dist/svg-import.js.
+  License: dist/licenses/svgpath-MIT.txt; https://github.com/fontello/svgpath
+- External datasets linked from dist/datasets.html are not bundled or covered by
+  the application's code license. Synthetic demonstration geometry is generated
+  by this application and is not a real building or scientific validation set.

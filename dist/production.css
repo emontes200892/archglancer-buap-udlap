@@ -11,3 +11,9 @@
 .document-workspace .tool-button:hover{background:#b84b00;color:#fff}
 .document-workspace .pdf-scroll{cursor:grab;touch-action:none;overscroll-behavior:contain}
 .document-workspace .pdf-scroll.dragging{cursor:grabbing}
+.review-panel{border-top:1px solid #526b78}.review-panel p{font-size:13px;line-height:1.45;color:#cee0e9}.review-panel label{display:block;margin:8px 0}.review-panel input:not([type=checkbox]),.review-panel select{display:block;width:100%;max-width:100%;padding:8px;background:#092532;color:#e9f8ff;border:1px solid #658290;border-radius:4px}.review-panel .tool-button{margin:6px 4px 6px 0}.review-panel a{display:block;color:#7fe6d4;margin:10px 0}
+/* Keep new review tools from stretching the drawing into a multi-screen canvas. */
+.cad-main{align-self:start}.cad-surface{flex:none;height:65vh;min-height:420px}
+@media(min-width:901px){.cad-side{max-height:calc(100vh - 48px);overflow:auto;padding-right:4px;position:sticky;top:24px;scrollbar-gutter:stable}}
+@media(max-width:600px){.cad-surface{height:55vh;min-height:320px}}
+.cad-side>.panel{flex-shrink:0}

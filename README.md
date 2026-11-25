@@ -7,7 +7,7 @@ No abra index.html con doble clic. Este ZIP contiene el programa, no un proyecto
 para el botón Abrir proyecto ZIP.
 
 ## Flujo
-1. Cargar DWG o Abrir DXF / DWG / JSON. Espere la lectura del archivo.
+1. Cargar DWG o Abrir DXF / DWG / SVG / JSON. Espere la lectura del archivo.
 2. Pisos y vistas del CAD enumera las ventanas 2D recuperadas del original.
 3. Ver en CAD permite revisar cada ventana; edite el nombre y marque las que
    correspondan a los pisos deseados. Puede quitar cortes y detalles de la lista.
@@ -121,3 +121,44 @@ Abra dist/manual.html o Manual_ArchGlancer_BUAP_UDLAP.pdf. También puede usar e
 La compatibilidad DWG sigue siendo experimental: esta edición generaliza el
 manejo de archivos y proyectos, no sustituye el motor por un trazador universal.
 No incluye autoguardado: descarga el proyecto ZIP para conservar tu trabajo.
+
+## Componentes y datasets (25 noviembre 2026)
+
+- Importador SVG de contornos: paths con subtrazos separados, transformaciones de
+  grupos, líneas, polígonos, rectángulos, círculos y elipses. Conserva atributos de
+  origen y etiquetas disponibles. Omite texto, CSS, rellenos, referencias y recortes.
+  Máximo 20 MB, 30 000 nodos, 100 000 contornos y 2 millones de vértices.
+- Busca entidades por ID interno, ID de origen, capa o categoría; corrige etiquetas,
+  notas y estado de revisión humana. Exporta la tabla CSV o guarda el proyecto ZIP.
+  La categoría no modifica la capa ni cambia la geometría exportada.
+- Generador de planos sintéticos reproducibles mediante semilla, sin cámara.
+  Son esquemas 2D de prueba, no diseños constructivos ni renders fotorrealistas.
+- Guía de acceso a datasets: [dist/datasets.html](dist/datasets.html).
+  Los datasets externos no están incluidos; descarga en origen y revisa su licencia.
+  Se carga un SVG a la vez. No hay descarga automática de Kaggle ni modelos de IA.
+- [Protocolo piloto](docs/protocolo-evaluacion.md) y [plantilla vacía](docs/evaluacion.csv)
+  para evaluar el sistema. No se han realizado todavía experimentos con usuarios.
+
+### Prueba rápida
+
+1. Abre Datasets CAD y pulsa Generar plano SVG (semilla 42).
+2. Busca `door-2`, selecciona el resultado y edita categoría/nota; marca Revisado.
+3. Pulsa Guardar etiqueta, exporta CSV y guarda el proyecto ZIP.
+4. Marca la vista Modelo en Pisos y vistas y genera PDF con Ajustar a hoja.
+5. Vuelve a abrir el ZIP y verifica la etiqueta y el PDF.
+6. Repite con tu DXF/DWG y con un SVG externo; comprueba el informe de omisiones.
+
+### Compilar y verificar
+
+```bash
+npm ci
+npm run build
+npm test
+# Requiere Playwright y Chromium instalados para pruebas de navegador:
+npm run test:browser
+```
+
+`PLAYWRIGHT_MODULE` permite indicar la ruta al módulo Playwright;
+`CHROMIUM_EXECUTABLE` permite indicar el ejecutable del navegador.
+`SVG_SMOKE_FILE` agrega a la prueba un SVG externo local, sin redistribuirlo.
+El manual HTML incluye estas novedades; el PDF anterior se conserva como referencia histórica.

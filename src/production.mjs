@@ -4,7 +4,7 @@ import {setupFloorSheets} from './floor-sheets.mjs';
 import * as pdfjs from 'pdfjs-dist/build/pdf.mjs';
 import {zipSync,unzipSync,strToU8,strFromU8} from 'fflate';
 import {exportCadPDF} from './pdf-export.mjs';
-pdfjs.GlobalWorkerOptions.workerSrc='pdf-engine/pdf.worker.mjs';
+pdfjs.GlobalWorkerOptions.workerSrc='./pdf-engine/pdf.worker.mjs';
 const $=id=>document.getElementById(id);
 const bar=document.createElement('section');bar.className='project-bar';
 bar.innerHTML=`<label>Proyecto <input id="projectName" value="Mi proyecto" maxlength="100"></label><button class="tool-button" id="saveProject">Guardar proyecto ZIP</button><button class="tool-button" id="openProject">Abrir proyecto ZIP</button><input type="file" hidden id="projectFile" accept=".zip"><button class="tool-button" id="openPdf">Abrir PDF</button><input type="file" hidden id="pdfFile" accept=".pdf"><button class="tool-button" id="pdfView">Ver PDF</button><button class="tool-button" id="cancelExport" hidden>Cancelar exportación</button><span id="projectStatus" role="status">Archivos locales · guarda un ZIP para conservar tu trabajo.</span>`;
