@@ -7,7 +7,7 @@ files = ['package.json', 'package-lock.json', 'README.md', 'THIRD_PARTY.md', 'IN
 for folder in ['src', 'scripts', 'docs']:
     files.extend(str(p.relative_to(root)) for p in (root / folder).rglob('*') if p.is_file() and '__pycache__' not in str(p))
 for p in (root / 'dist').iterdir():
-    if p.suffix in ('.html', '.css', '.js') and p.name not in ('production.js', 'svg-import.js', 'stack-archive.js'):
+    if p.suffix in ('.html', '.css', '.js') and p.name not in ('production.js', 'svg-import.js', 'stack-archive.js', 'bim.js', 'bim-worker.js'):
         files.append(str(p.relative_to(root)))
 with tarfile.open(root / 'dist/licenses/archglancer-source.tar.gz', 'w:gz') as archive:
     for name in sorted(files):

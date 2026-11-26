@@ -30,3 +30,15 @@ User drawings, raster PDF pages, logos and datasets are excluded from code licen
 - External datasets linked from dist/datasets.html are not bundled or covered by
   the application's code license. Synthetic demonstration geometry is generated
   by this application and is not a real building or scientific validation set.
+
+- Three.js 0.187.0, MIT; dist/licenses/three-MIT.txt.
+  Source: https://github.com/mrdoob/three/tree/7e89746a687bb88271253698fa108b1dd59825d0
+- web-ifc 0.0.81, MPL-2.0; dist/licenses/web-ifc-MPL-2.0.txt.
+  Unmodified npm WASM at dist/bim/web-ifc.wasm; JS bundled into bim-worker.js.
+  Corresponding source and build instructions are available without charge at:
+  https://github.com/ThatOpen/engine_web-ifc/tree/43189a7d65cd6e471d3fb674939dd1844ee46ac6
+- IfcOpenShell 0.8.5 is used only to generate the synthetic example; not bundled
+  as a runtime dependency. https://ifcopenshell.org/
+- dist/data/edificio-demo.ifc and its expected-coordinate file are generated
+  synthetic examples, released with the application under GPL-3.0-or-later.
+  They are not construction drawings, private building data or experimental evidence.

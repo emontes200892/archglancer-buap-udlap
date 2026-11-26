@@ -6,11 +6,13 @@
     "fflate": "0.8.3",
     "pdf-lib": "1.17.1",
     "pdfjs-dist": "6.3.289",
-    "svgpath": "2.6.0"
+    "svgpath": "2.6.0",
+    "three": "0.187.0",
+    "web-ifc": "0.0.81"
   },
   "scripts": {
-    "build": "node scripts/build-cad.mjs && node scripts/build-production.mjs && node scripts/build-svg.mjs && node scripts/build-stack.mjs",
-    "test": "node scripts/test-import.mjs && node scripts/check-general.mjs && node scripts/check-production.mjs && node scripts/check-pdf-wheel.mjs && node scripts/check-stack.mjs",
+    "build": "node scripts/build-cad.mjs && node scripts/build-production.mjs && node scripts/build-svg.mjs && node scripts/build-stack.mjs && node scripts/build-bim.mjs",
+    "test": "node scripts/test-import.mjs && node scripts/check-general.mjs && node scripts/check-production.mjs && node scripts/check-pdf-wheel.mjs && node scripts/check-stack.mjs && node scripts/check-bim.mjs",
     "test:browser": "node scripts/check-browser.mjs && node scripts/check-svg-browser.mjs"
   }
 }

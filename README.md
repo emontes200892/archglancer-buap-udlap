@@ -1,4 +1,4 @@
-# ArchGlancer BUAP-UDLAP — PDF por piso desde DWG/DXF
+# ArchGlancer BUAP-UDLAP — BIM 1 (experimental)
 
 ## Iniciar
 python3 INICIAR.py
@@ -20,7 +20,7 @@ para el botón Abrir proyecto ZIP.
    nombres de pisos, renders y último PDF. Abrir proyecto ZIP los recupera.
    Se conservan las capas visibles, textos y vista elegida; el zoom y desplazamiento temporales se reajustan.
 
-No hay planos ni pisos precargados. Se retiraron las 18 imágenes derivadas de los
+Los ejemplos sintéticos CAD/XYZ/IFC se abren desde Inicio. No se asignan planos propios automáticamente. Se retiraron las 18 imágenes derivadas de los
 PDF anteriores, su visor y el recorte CTC precalculado. Los PDF se trazan con
 geometría del CAD cargado, no con esas imágenes ni con los renders.
 La galería comienza vacía. Los 51 renders CTC se ofrecen como ejemplo opcional y no se asignan a otros dibujos.
@@ -45,7 +45,7 @@ Para CAD sin ventanas compatibles se requiere delimitar los pisos sobre el model
 - PDF local multipágina: 100 MB; visualización sin OCR ni edición.
 - Renders: JPG/PNG/WebP; 100 imágenes, 32 MB cada una, 512 MB total, 80 MP por imagen.
 - Proyecto descargable: 512 MB descomprimido; exige memoria adicional.
-- Archivos locales: no se suben a servidores ni se guardan automáticamente. Cambiar de sección conserva la sesión; recargar/cerrar requiere recuperar los ZIP.
+- Archivos locales: no se suben a servidores de conversión. CAD/XYZ requieren guardar ZIP antes de cerrar. BIM tiene copia local automática opcional; usa su ZIP para respaldo independiente.
 - Esta versión es beta, sin garantía de compatibilidad universal o fidelidad AutoCAD.
 
 ## Comprobaciones
@@ -183,3 +183,17 @@ El manual HTML y PDF se regeneran juntos con scripts/make-manual.py.
   Generar con Python + reportlab: `python scripts/make-manual.py`.
 - Prueba `scripts/check-stack.mjs`: bytes, orden no alfabético, calibración, cursor,
   cámaras, entradas inválidas y archivos faltantes. Ver `docs/verificacion-navegacion.md`.
+
+## BIM 1 · 26 noviembre 2026
+
+Añade **Edificio 3D**, manteniendo las secciones previas. IFC STEP mediante web-ifc, 4 vistas de la misma geometría (planta XY, XZ, YZ y perspectiva), selección por expressID/GlobalId, filtros por nivel y tipo, propiedades básicas y material simple. Cortes vinculados, guía 3D, aislamiento y selección por clic o lista.
+
+`?demo=bim` abre un IFC4 sintético propio de 19 componentes y 2 niveles. `scripts/make-ifc-demo.py` lo reproduce con IfcOpenShell 0.8.5; los GUID son deterministas. `dist/data/edificio-demo.expected.json` documenta las coordenadas esperadas. No es un edificio real ni un proyecto constructivo.
+
+La sección BIM guarda una copia local opcional en IndexedDB. El ZIP BIM conserva el IFC original y el estado. Se abre con **Abrir BIM ZIP**, separado de los ZIP CAD y XYZ. El archivo descargable de la aplicación sigue siendo un instalable local, no un proyecto.
+
+Límites BIM: 50 MB, 20 000 mallas, 2 millones de triángulos, coordenadas absolutas menores de 1 000 000 m. Lectura cancelable en worker. Sin WebGL2: modo compatible por CPU, hasta 50 000 triángulos, ordenación aproximada. No se cierran las caras cortadas ni se generan cotas/PDF desde IFC. No se registra IFC con CAD/PDF/XYZ, no se edita BIM ni se reconstruye un edificio desde DWG.
+
+Verificación: `npm test` incluye la importación IFC real del ejemplo, niveles, IDs, coordenadas, metros/milímetros, material simple y ZIP BIM. Prueba interactiva realizada en modo compatible porque WebGL2 está desactivado en el navegador de pruebas; la ruta GPU requiere validación adicional.
+
+Versión anterior preservada: commit `28576570ad1e3669fe8ef82dca545d96ce4d232b` (navegación XYZ). Esta entrega amplía esa misma aplicación. Guarda tus proyectos antes de cambiar de versión; conserva sus originales.

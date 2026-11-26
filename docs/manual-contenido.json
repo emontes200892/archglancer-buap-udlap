@@ -1,11 +1,11 @@
 [
   {
     "title": "Empieza aquí",
-    "lead": "Manual de uso · ArchGlancer BUAP-UDLAP · Navegación integrada y ejemplos · 25 de noviembre de 2026",
+    "lead": "Manual de uso · ArchGlancer BUAP-UDLAP · BIM 1: navegación integrada, IFC y ejemplos · 26 de noviembre de 2026",
     "blocks": [
       [
         "p",
-        "ArchGlancer permite inspeccionar planos, revisar entidades, vincular imágenes, generar PDF desde la geometría recuperada y explorar un stack de imágenes. Es un prototipo de investigación inspirado en la navegación por capas y cortes. No es una copia de Neuroglancer ni un sustituto universal de un programa CAD."
+        "ArchGlancer permite inspeccionar planos, revisar entidades, vincular imágenes, generar PDF desde la geometría recuperada explorar un stack de imágenes y seleccionar componentes de un edificio IFC. Es un prototipo de investigación inspirado en la navegación por capas y cortes. No es una copia de Neuroglancer ni un sustituto universal de un programa CAD."
       ],
       [
         "p",
@@ -66,6 +66,10 @@
             "Un volumen independiente con tres cortes vinculados y planos con textura."
           ],
           [
+            "Edificio 3D",
+            "Un IFC con componentes, planta, secciones, 3D y copia local automática."
+          ],
+          [
             "Manual",
             "Esta guía dentro de la misma sesión."
           ]
@@ -77,7 +81,7 @@
       ],
       [
         "p",
-        "El estado se mantiene mientras permanezca abierta esta pestaña sin recargar. No hay autoguardado persistente ni recuperación garantizada tras un cierre, bloqueo, recarga o cambio de dispositivo. Descargar un ZIP es la forma de conservar el trabajo."
+        "El estado se mantiene mientras permanezca abierta esta pestaña sin recargar. CAD y XYZ no tienen autoguardado persistente. Edificio 3D tiene una copia local opcional en este navegador; no sincroniza dispositivos. Descargar los ZIP es la forma de conservar copias independientes."
       ],
       [
         "p",
@@ -117,8 +121,12 @@
             "De 2 a 128 cortes XY, todos del mismo tamaño y alineados, ordenados por Z. Separaciones X/Y/Z y unidad si existen."
           ],
           [
+            "Edificio 3D",
+            "IFC STEP con geometría física. Ejemplo IFC4 de dos niveles incluido; importación experimental."
+          ],
+          [
             "Reabrir trabajo",
-            "ZIP de proyecto CAD o ZIP de stack XYZ generado por la sección correspondiente."
+            "ZIP CAD, XYZ o BIM generado y abierto desde su sección correspondiente."
           ]
         ]
       ],
@@ -132,13 +140,13 @@
       ],
       [
         "p",
-        "No se importan directamente modelos IFC/glTF, NIfTI, DICOM, OME-TIFF, Zarr ni el formato precomputed de Neuroglancer. Serían adaptadores futuros; no cambies únicamente su extensión para intentar abrirlos."
+        "Edificio 3D importa IFC STEP. No se importan directamente glTF, NIfTI, DICOM, OME-TIFF, Zarr ni el formato precomputed de Neuroglancer. Serían adaptadores futuros; no cambies únicamente su extensión para intentar abrirlos."
       ]
     ]
   },
   {
     "title": "Ejemplos precargados y carga automática",
-    "lead": "Tres entradas reproducibles para comenzar y compartir una demostración.",
+    "lead": "Cuatro entradas reproducibles para comenzar y compartir una demostración.",
     "blocks": [
       [
         "table",
@@ -156,6 +164,10 @@
             "64 × 64 × 32 vóxeles; esfera naranja y conducto turquesa. Separación 1, 1, 2 en unidades de ejemplo, exageración Z = 1."
           ],
           [
+            "Edificio IFC",
+            "19 componentes y dos niveles. Muros, losas y puertas con IDs, propiedades y selección vinculada. Datos sintéticos."
+          ],
+          [
             "DXF incluido",
             "Archivo de prueba para verificar importación, capas y generación de PDF. Descargable desde Inicio."
           ]
@@ -167,7 +179,7 @@
       ],
       [
         "p",
-        "Para compartir una carga automática añade ?demo=cad, ?demo=volume o ?demo=dxf a la dirección de la página. Por ejemplo: https://emontes200892.github.io/archglancer-buap-udlap/?demo=volume . El destinatario abre una sesión con ese ejemplo; el enlace no contiene tus archivos ni tus anotaciones."
+        "Para compartir una carga automática añade ?demo=cad, ?demo=volume, ?demo=dxf o ?demo=bim a la dirección de la página. Por ejemplo: https://emontes200892.github.io/archglancer-buap-udlap/?demo=volume . El destinatario abre una sesión con ese ejemplo; el enlace no contiene tus archivos ni tus anotaciones."
       ],
       [
         "p",
@@ -421,6 +433,10 @@
             "Guardar stack ZIP / Abrir stack ZIP dentro de XYZ. Conserva imágenes, orden, separaciones, unidad, cursor, exageración y vistas."
           ],
           [
+            "Edificio BIM (.archglancer-bim.zip)",
+            "Guardar proyecto BIM ZIP / Abrir BIM ZIP en Edificio 3D. Conserva IFC, filtros, selección, cortes y cámaras."
+          ],
+          [
             "JSON y CSV",
             "JSON conserva la representación CAD y metadatos; CSV exporta la tabla de componentes. No reemplazan el proyecto completo."
           ]
@@ -499,7 +515,75 @@
       ],
       [
         "p",
-        "Para acercarse a Neuroglancer a escala científica faltan adaptadores de volúmenes multiescala, segmentaciones/mallas, registro espacial, selección de componentes 3D y validación de cada dominio. Para un edificio hacen falta alturas/geometría 3D; para materiales, cortes calibrados y etiquetas independientes. Referencias: https://github.com/google/neuroglancer y https://floorplancad.github.io/ ."
+        "Para acercarse a Neuroglancer a escala científica faltan adaptadores de volúmenes multiescala, segmentaciones/mallas, registro espacial, selección de componentes volumétricos de materiales y validación de cada dominio. Edificio 3D ya utiliza la geometría y los IDs de IFC, pero aún falta vincular ese modelo con el CAD y los PDF; para materiales, cortes calibrados y etiquetas independientes. Referencias: https://github.com/google/neuroglancer y https://floorplancad.github.io/ ."
+      ]
+    ]
+  },
+  {
+    "title": "Edificio 3D: abrir y seleccionar",
+    "lead": "BIM 1 incorpora geometría IFC real y cuatro vistas del mismo edificio.",
+    "blocks": [
+      [
+        "p",
+        "Esta sección se añade a CAD, PDF, renders y XYZ. El IFC y sus cortes comparten geometría e identificadores dentro de Edificio 3D. Todavía no se superponen automáticamente con los archivos de las otras secciones."
+      ],
+      [
+        "bullets",
+        [
+          "En Inicio pulsa Abrir edificio 3D, o abre la web con ?demo=bim. El ejemplo tiene 19 componentes en dos niveles, en metros.",
+          "Escribe Puerta en el buscador. Selecciona Puerta principal / Planta baja. Su geometría se resalta en naranja y los cortes pasan por el centro de su caja envolvente.",
+          "Comprueba ID IFC, GlobalId, tipo, nivel y material simple disponible. El ID numérico es local al archivo; no identifica el mismo objeto en archivos diferentes.",
+          "Selecciona Nivel 1 y elige su puerta. Los controles muestran aproximadamente X=2.60, Y=0.09, Z=4.30 m. Mueve el deslizador Z para cambiar la sección horizontal.",
+          "Activa Aislar selección para ocultar los demás componentes. Desactívalo para recuperar el contexto.",
+          "Para tus datos pulsa Abrir IFC y selecciona un archivo .ifc STEP. Un archivo DXF/DWG renombrado no se convierte en IFC."
+        ]
+      ],
+      [
+        "p",
+        "Planta XY mira desde arriba; sección XZ mira hacia +Y; sección YZ mira hacia -X. Cada una elimina la geometría situada delante del plano de corte. Recortar también en 3D aplica los tres límites en la perspectiva. Planos guía muestra la posición de los cortes en 3D."
+      ],
+      [
+        "p",
+        "Clic selecciona; rueda hace zoom. Arrastrar gira en 3D y desplaza en las vistas 2D. Ctrl + arrastrar desplaza en 3D. Las cámaras admiten encuadres independientes; seleccionar un componente vuelve a situar los cortes en su centro. Centrar selección no calcula una medida."
+      ],
+      [
+        "p",
+        "Caja envolvente es la dimensión de la caja alineada con los ejes del visor, en metros. No es una medición certificada ni necesariamente el ancho nominal del objeto. OverallWidth/OverallHeight, si aparecen, son valores originales del IFC y mantienen las unidades del archivo."
+      ]
+    ]
+  },
+  {
+    "title": "Edificio 3D: guardar y límites",
+    "lead": "La copia local, el ZIP BIM y la versión del programa tienen funciones distintas.",
+    "blocks": [
+      [
+        "bullets",
+        [
+          "Con Recordar este edificio activado, espera el mensaje Copia local actualizada. Se conserva el último IFC junto con selección, filtros, cortes y cámaras.",
+          "Recarga la página y entra a Edificio 3D. La copia se recupera en el mismo navegador y origen web. No recupera automáticamente CAD o XYZ.",
+          "Pulsa Guardar proyecto BIM ZIP para una copia independiente. Para restaurarla utiliza Abrir BIM ZIP, en esta misma sección.",
+          "Olvidar copia local elimina la copia del navegador y desactiva el guardado. El edificio permanece abierto hasta reemplazarlo o cerrar. Guarda un ZIP antes si lo necesitas."
+        ]
+      ],
+      [
+        "p",
+        "Límites: IFC STEP de hasta 50 MB, 20 000 mallas y 2 millones de triángulos. Un worker permite cancelar la lectura; se interrumpe si excede 120 segundos. Estos límites no garantizan memoria suficiente. IFCZIP e IFCXML no se admiten directamente."
+      ],
+      [
+        "p",
+        "Si WebGL2 no está disponible, el visor usa proyección por CPU para modelos de hasta 50 000 triángulos. Ese modo ordena superficies de forma aproximada. La validación interactiva de BIM 1 se hizo en ese modo; la ruta WebGL necesita pruebas adicionales en equipos con GPU."
+      ],
+      [
+        "p",
+        "La primera edición se ha comprobado con el edificio sintético IFC4, IDs, niveles, coordenadas y conversión de unidades. No valida todas las representaciones IFC ni preserva todo el aspecto original: los colores indican categorías y selección. Materiales complejos, propiedades de tipos y conjuntos completos de propiedades aún no se muestran."
+      ],
+      [
+        "p",
+        "Los cortes no generan rellenos de sección, cotas ni PDF constructivos desde IFC. Los PDF de CAD mantienen su flujo anterior. No hay reconstrucción automática desde DWG 2D, edición BIM, federación de modelos, historial colaborativo o reconocimiento de componentes mediante IA."
+      ],
+      [
+        "p",
+        "Esta versión amplía la edición anterior de navegación XYZ (commit 28576570ad1e3669fe8ef82dca545d96ce4d232b). El código y los paquetes anteriores se conservan. Para actualizar en tu equipo extrae el paquete nuevo en otra carpeta y prueba copias de tus ZIP; no sustituyas tus originales."
       ]
     ]
   }

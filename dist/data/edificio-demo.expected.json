@@ -1,0 +1,293 @@
+{
+  "synthetic": true,
+  "units": "m",
+  "schema": "IFC4",
+  "count": 19,
+  "elements": [
+    {
+      "id": 23,
+      "guid": "0z16riUNLrFZpdKeuuW69W",
+      "name": "Losa / Planta baja",
+      "type": "IFCSLAB",
+      "storey": "Planta baja",
+      "bounds": [
+        0,
+        0,
+        0.0,
+        12,
+        8,
+        0.25
+      ]
+    },
+    {
+      "id": 46,
+      "guid": "1P2M2G8xMEUPXnDA1hicvm",
+      "name": "Muro oeste / Planta baja",
+      "type": "IFCWALL",
+      "storey": "Planta baja",
+      "bounds": [
+        0,
+        0,
+        0.25,
+        0.2,
+        8,
+        3.0
+      ]
+    },
+    {
+      "id": 67,
+      "guid": "2FfHIemCjSFiLl1RIRFuGF",
+      "name": "Muro este / Planta baja",
+      "type": "IFCWALL",
+      "storey": "Planta baja",
+      "bounds": [
+        11.8,
+        0,
+        0.25,
+        12.0,
+        8,
+        3.0
+      ]
+    },
+    {
+      "id": 88,
+      "guid": "0elsHkT8YYeIxpZ01V5KzL",
+      "name": "Muro posterior / Planta baja",
+      "type": "IFCWALL",
+      "storey": "Planta baja",
+      "bounds": [
+        0,
+        7.8,
+        0.25,
+        12,
+        8.0,
+        3.0
+      ]
+    },
+    {
+      "id": 109,
+      "guid": "003LMJsg8UVv7qLB6bhKuR",
+      "name": "Frente izquierdo / Planta baja",
+      "type": "IFCWALL",
+      "storey": "Planta baja",
+      "bounds": [
+        0,
+        0,
+        0.25,
+        2,
+        0.2,
+        3.0
+      ]
+    },
+    {
+      "id": 130,
+      "guid": "06yRBQ_SaJUQSUSuM0UVTH",
+      "name": "Frente derecho / Planta baja",
+      "type": "IFCWALL",
+      "storey": "Planta baja",
+      "bounds": [
+        3.2,
+        0,
+        0.25,
+        12.0,
+        0.2,
+        3.0
+      ]
+    },
+    {
+      "id": 151,
+      "guid": "2lQ8sXPBtxWiCQt9froPgP",
+      "name": "Dintel entrada / Planta baja",
+      "type": "IFCWALL",
+      "storey": "Planta baja",
+      "bounds": [
+        2,
+        0,
+        2.35,
+        3.2,
+        0.2,
+        3.0
+      ]
+    },
+    {
+      "id": 172,
+      "guid": "1h3i0Q3lPad_cEFkTJlcJh",
+      "name": "Puerta principal / Planta baja",
+      "type": "IFCDOOR",
+      "storey": "Planta baja",
+      "bounds": [
+        2,
+        0.05,
+        0.25,
+        3.2,
+        0.13,
+        2.35
+      ]
+    },
+    {
+      "id": 194,
+      "guid": "2SCAXdl_v7IXz$IPjjTWVz",
+      "name": "Division interior / Planta baja",
+      "type": "IFCWALL",
+      "storey": "Planta baja",
+      "bounds": [
+        6,
+        2.8,
+        0.25,
+        6.15,
+        7.8,
+        3.0
+      ]
+    },
+    {
+      "id": 221,
+      "guid": "3t3FgsqG2_lMOSjoFTUuFc",
+      "name": "Losa / Nivel 1",
+      "type": "IFCSLAB",
+      "storey": "Nivel 1",
+      "bounds": [
+        0,
+        0,
+        3.0,
+        12,
+        8,
+        3.25
+      ]
+    },
+    {
+      "id": 243,
+      "guid": "3gGoGw6Al3uG7enE4Zaxob",
+      "name": "Muro oeste / Nivel 1",
+      "type": "IFCWALL",
+      "storey": "Nivel 1",
+      "bounds": [
+        0,
+        0,
+        3.25,
+        0.2,
+        8,
+        6.0
+      ]
+    },
+    {
+      "id": 264,
+      "guid": "3AO3Wnsobz9MgdpLQy2Y0u",
+      "name": "Muro este / Nivel 1",
+      "type": "IFCWALL",
+      "storey": "Nivel 1",
+      "bounds": [
+        11.8,
+        0,
+        3.25,
+        12.0,
+        8,
+        6.0
+      ]
+    },
+    {
+      "id": 285,
+      "guid": "09yF4VgoiACQbM0YAk6rpC",
+      "name": "Muro posterior / Nivel 1",
+      "type": "IFCWALL",
+      "storey": "Nivel 1",
+      "bounds": [
+        0,
+        7.8,
+        3.25,
+        12,
+        8.0,
+        6.0
+      ]
+    },
+    {
+      "id": 306,
+      "guid": "0Jd6_L8x2bZdKBvqP9uDrm",
+      "name": "Frente izquierdo / Nivel 1",
+      "type": "IFCWALL",
+      "storey": "Nivel 1",
+      "bounds": [
+        0,
+        0,
+        3.25,
+        2,
+        0.2,
+        6.0
+      ]
+    },
+    {
+      "id": 327,
+      "guid": "3Wm0GFbU5KUIX0V1rJrqhY",
+      "name": "Frente derecho / Nivel 1",
+      "type": "IFCWALL",
+      "storey": "Nivel 1",
+      "bounds": [
+        3.2,
+        0,
+        3.25,
+        12.0,
+        0.2,
+        6.0
+      ]
+    },
+    {
+      "id": 348,
+      "guid": "2HdsGubaT7I8K$FTPZQVqd",
+      "name": "Dintel entrada / Nivel 1",
+      "type": "IFCWALL",
+      "storey": "Nivel 1",
+      "bounds": [
+        2,
+        0,
+        5.35,
+        3.2,
+        0.2,
+        6.0
+      ]
+    },
+    {
+      "id": 369,
+      "guid": "2HN12v09D5sHjgsomIfphD",
+      "name": "Puerta principal / Nivel 1",
+      "type": "IFCDOOR",
+      "storey": "Nivel 1",
+      "bounds": [
+        2,
+        0.05,
+        3.25,
+        3.2,
+        0.13,
+        5.35
+      ]
+    },
+    {
+      "id": 390,
+      "guid": "0CUNSOVaES1xvDJvoao8aR",
+      "name": "Division interior / Nivel 1",
+      "type": "IFCWALL",
+      "storey": "Nivel 1",
+      "bounds": [
+        6,
+        2.8,
+        3.25,
+        6.15,
+        7.8,
+        6.0
+      ]
+    },
+    {
+      "id": 411,
+      "guid": "0fZwtPeEEjWEQBTwa4CqA5",
+      "name": "Cubierta / Nivel 1",
+      "type": "IFCSLAB",
+      "storey": "Nivel 1",
+      "bounds": [
+        0,
+        0,
+        6.0,
+        12,
+        8,
+        6.25
+      ]
+    }
+  ]
+}
