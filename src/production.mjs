@@ -19,7 +19,7 @@ let pdf=null,pdfTask=null,pdfFile=null,pdfUrl=null,pageNo=1,zoom=1,renderTask=nu
 function status(s){$('projectStatus').textContent=s;}
 function download(blob,name){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),60000);}
 for(const id of ['cadTab','pdfTab','rendersTab']){const old=$(id).onclick;$(id).onclick=()=>{root.hidden=true;$('pdfView').setAttribute('aria-pressed','false');old();};}
-function showPdf(){for(const selector of ['#cadWorkspace','#renderWorkspace','.workspace','.rail'])document.querySelector(selector).hidden=true;for(const id of ['cadTab','pdfTab','rendersTab'])$(id).setAttribute('aria-pressed','false');root.hidden=false;$('pdfView').setAttribute('aria-pressed','true');}
+function showPdf(){window.archWorkspace?.selectMode("pdf");for(const selector of ['#cadWorkspace','#renderWorkspace','.workspace','.rail'])document.querySelector(selector).hidden=true;for(const id of ['cadTab','pdfTab','rendersTab'])$(id).setAttribute('aria-pressed','false');root.hidden=false;$('pdfView').setAttribute('aria-pressed','true');}
 $('pdfView').onclick=showPdf;$('pdfTab').onclick=showPdf;
 async function render(){if(!pdf)return;const ticket=++renderGeneration;if(renderTask){renderTask.cancel();try{await renderTask.promise;}catch{}renderTask=null;}try{
  const page=await pdf.getPage(pageNo);if(ticket!==renderGeneration)return;

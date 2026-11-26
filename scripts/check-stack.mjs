@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {packStack,unpackStack,validateSettings} from '../src/stack-archive.mjs';
+import {zipSync,strToU8} from 'fflate';
+const image=Uint8Array.from(Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9Wl6mqAAAAAASUVORK5CYII=','base64'));
+const input=[new File([image],'Z10.png'),new File([image],'Z02.png')];
+const settings={spacing:[.5,.5,2],unit:'µm',ex:3,pos:[0,0,1],all:true,panels:Array.from({length:4},()=>({zoom:2,pan:[12,-3],yaw:.3,pitch:.8}))};
+const packed=await packStack(input,settings),back=unpackStack(packed);
+assert.deepEqual(back.files.map(f=>f.name),['Z10.png','Z02.png']);
+assert.deepEqual(back.settings.spacing,settings.spacing);assert.deepEqual(back.settings.panels,settings.panels);assert.deepEqual(back.settings.pos,settings.pos);assert.equal(back.settings.unit,'µm');
+assert.deepEqual(new Uint8Array(await back.files[0].arrayBuffer()),image);
+assert.throws(()=>unpackStack(new Uint8Array([1,2,3])));
+assert.throws(()=>validateSettings({...back.settings,spacing:[1,NaN,1]}),/Separaciones/);
+assert.throws(()=>validateSettings({...back.settings,pos:[0,-1,0]}),/Posición/);
+assert.throws(()=>unpackStack(zipSync({'stack.json':strToU8(JSON.stringify(back.settings))})),/Falta la imagen/);
+assert.throws(()=>validateSettings({...back.settings,files:[back.settings.files[0],back.settings.files[0]]}),/Lista/);
+console.log('PASS XYZ archive: image bytes, explicit slice order, calibration, cursor, camera state, malformed ZIP/settings and missing slices.');

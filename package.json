@@ -9,8 +9,8 @@
     "svgpath": "2.6.0"
   },
   "scripts": {
-    "build": "node scripts/build-cad.mjs && node scripts/build-production.mjs && node scripts/build-svg.mjs",
-    "test": "node scripts/test-import.mjs && node scripts/check-general.mjs && node scripts/check-production.mjs && node scripts/check-pdf-wheel.mjs",
+    "build": "node scripts/build-cad.mjs && node scripts/build-production.mjs && node scripts/build-svg.mjs && node scripts/build-stack.mjs",
+    "test": "node scripts/test-import.mjs && node scripts/check-general.mjs && node scripts/check-production.mjs && node scripts/check-pdf-wheel.mjs && node scripts/check-stack.mjs",
     "test:browser": "node scripts/check-browser.mjs && node scripts/check-svg-browser.mjs"
   }
 }

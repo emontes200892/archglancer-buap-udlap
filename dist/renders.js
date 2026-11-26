@@ -31,7 +31,7 @@
   new ResizeObserver(fit).observe(stage);
   const cad=$('cadTab').onclick,pdf=$('pdfTab').onclick;
   $('cadTab').onclick=()=>{root.hidden=true;$('rendersTab').setAttribute('aria-pressed','false');cad();};$('pdfTab').onclick=()=>{root.hidden=true;$('rendersTab').setAttribute('aria-pressed','false');pdf();};
-  $('rendersTab').onclick=()=>{root.hidden=false;$('cadWorkspace').hidden=true;document.querySelector('.workspace').hidden=true;document.querySelector('.rail').hidden=true;$('rendersTab').setAttribute('aria-pressed','true');$('cadTab').setAttribute('aria-pressed','false');$('pdfTab').setAttribute('aria-pressed','false');fit();};
+  $('rendersTab').onclick=()=>{window.archWorkspace?.selectMode('renders');root.hidden=false;$('cadWorkspace').hidden=true;document.querySelector('.workspace').hidden=true;document.querySelector('.rail').hidden=true;$('rendersTab').setAttribute('aria-pressed','true');$('cadTab').setAttribute('aria-pressed','false');$('pdfTab').setAttribute('aria-pressed','false');fit();};
   window.archRenders={snapshot:()=>items.map(item=>({...item})),restore:files=>{if(files.length)open(files,true);else{release();items=[];gallery();}},clear:()=>{release();items=[];gallery();},current:()=>items[index],link:floorId=>{if(items[index])items[index].floorId=floorId||null;},restoreLinks:links=>{items.forEach((item,i)=>item.floorId=links[i]?.floorId||null);window.dispatchEvent(new Event('render-selected'));}};
   window.addEventListener('beforeunload',release);gallery();$('cadTab').onclick();
 })();

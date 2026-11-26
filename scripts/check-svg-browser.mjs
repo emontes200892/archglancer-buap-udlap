@@ -11,7 +11,7 @@ try{
  browser=await chromium.launch({executablePath:process.env.CHROMIUM_EXECUTABLE,args:['--no-sandbox','--disable-gpu'],headless:true});
  const page=await browser.newPage({viewport:{width:1440,height:1000},acceptDownloads:true}),errors=[];
  page.on('pageerror',e=>errors.push(e.message));
- await page.goto('http://127.0.0.1:'+server.address().port);
+ await page.goto('http://127.0.0.1:'+server.address().port+'/#cad');
  await page.waitForSelector('#floorList',{state:'attached'});
  const result=await page.evaluate(async()=>{
   const {importSvg}=await import('./svg-import.js');

@@ -45,7 +45,7 @@ Para CAD sin ventanas compatibles se requiere delimitar los pisos sobre el model
 - PDF local multipágina: 100 MB; visualización sin OCR ni edición.
 - Renders: JPG/PNG/WebP; 100 imágenes, 32 MB cada una, 512 MB total, 80 MP por imagen.
 - Proyecto descargable: 512 MB descomprimido; exige memoria adicional.
-- Archivos locales: no se suben a servidores ni se guardan automáticamente.
+- Archivos locales: no se suben a servidores ni se guardan automáticamente. Cambiar de sección conserva la sesión; recargar/cerrar requiere recuperar los ZIP.
 - Esta versión es beta, sin garantía de compatibilidad universal o fidelidad AutoCAD.
 
 ## Comprobaciones
@@ -161,4 +161,25 @@ npm run test:browser
 `PLAYWRIGHT_MODULE` permite indicar la ruta al módulo Playwright;
 `CHROMIUM_EXECUTABLE` permite indicar el ejecutable del navegador.
 `SVG_SMOKE_FILE` agrega a la prueba un SVG externo local, sin redistribuirlo.
-El manual HTML incluye estas novedades; el PDF anterior se conserva como referencia histórica.
+El manual HTML y PDF se regeneran juntos con scripts/make-manual.py.
+
+
+## Navegación integrada, ejemplos y XYZ (25 noviembre 2026)
+
+- Menú Inicio / Plano CAD / PDF / Renders / XYZ / Manual en la misma sesión.
+  El iframe XYZ se mantiene vivo al cambiar de sección. No hay autoguardado tras recargar.
+- Inicio muestra un resumen del plano y del stack; no los registra espacialmente entre sí.
+- Ejemplos locales: SVG sintético (semilla 42), DXF incluido y phantom matemático
+  de 64 × 64 × 32 vóxeles (esfera y conducto, spacing 1:1:2 en unidades de ejemplo).
+- Enlaces `?demo=cad`, `?demo=dxf`, `?demo=volume`: cargan el ejemplo en una sesión nueva.
+  No comparten archivos privados ni anotaciones. No requieren servicios externos.
+- Guardar/Abrir stack ZIP conserva imágenes y orden, calibración, cursor, exageración,
+  zoom, desplazamiento y orientación de paneles. Es independiente del ZIP CAD.
+  Esquema `archglancer-stack/1`; no es compatible con precomputed de Neuroglancer.
+- XYZ sigue siendo un visor de cortes ortogonales y planos con textura; no mallas ni
+  reconstrucción automática. Los ejemplos antiguos en perspectiva no son tomografía.
+- Manual nuevo de 12 temas en HTML y PDF: navegación, ejemplos, CAD, revisión,
+  exportación, renders, preparación XYZ, controles, recuperación y límites.
+  Generar con Python + reportlab: `python scripts/make-manual.py`.
+- Prueba `scripts/check-stack.mjs`: bytes, orden no alfabético, calibración, cursor,
+  cámaras, entradas inválidas y archivos faltantes. Ver `docs/verificacion-navegacion.md`.
