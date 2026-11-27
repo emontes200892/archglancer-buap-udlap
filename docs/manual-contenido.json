@@ -1,11 +1,11 @@
 [
   {
     "title": "Empieza aquí",
-    "lead": "Manual de uso · ArchGlancer BUAP-UDLAP · BIM 1: navegación integrada, IFC y ejemplos · 26 de noviembre de 2026",
+    "lead": "Manual de uso · ArchGlancer BUAP-UDLAP · Reconstrucción CAD 1 · 27 de noviembre de 2026",
     "blocks": [
       [
         "p",
-        "ArchGlancer permite inspeccionar planos, revisar entidades, vincular imágenes, generar PDF desde la geometría recuperada explorar un stack de imágenes y seleccionar componentes de un edificio IFC. Es un prototipo de investigación inspirado en la navegación por capas y cortes. No es una copia de Neuroglancer ni un sustituto universal de un programa CAD."
+        "ArchGlancer permite inspeccionar planos, revisar entidades, vincular imágenes, generar PDF desde la geometría recuperada, explorar un stack de imágenes y seleccionar componentes de un edificio IFC. Es un prototipo de investigación inspirado en la navegación por capas y cortes. No es una copia de Neuroglancer ni un sustituto universal de un programa CAD."
       ],
       [
         "p",
@@ -67,7 +67,7 @@
           ],
           [
             "Edificio 3D",
-            "Un IFC con componentes, planta, secciones, 3D y copia local automática."
+            "IFC o reconstrucción CAD, componentes, cortes y copia local automática."
           ],
           [
             "Manual",
@@ -579,11 +579,72 @@
       ],
       [
         "p",
-        "Los cortes no generan rellenos de sección, cotas ni PDF constructivos desde IFC. Los PDF de CAD mantienen su flujo anterior. No hay reconstrucción automática desde DWG 2D, edición BIM, federación de modelos, historial colaborativo o reconocimiento de componentes mediante IA."
+        "Los cortes no generan rellenos de sección, cotas ni PDF constructivos desde IFC. Los PDF de CAD mantienen su flujo anterior. La reconstrucción CAD descrita en los temas 15 y 16 es una extrusión revisable; no hay interpretación universal de DWG, edición BIM, federación de modelos, historial colaborativo o reconocimiento de componentes mediante IA."
       ],
       [
         "p",
         "Esta versión amplía la edición anterior de navegación XYZ (commit 28576570ad1e3669fe8ef82dca545d96ce4d232b). El código y los paquetes anteriores se conservan. Para actualizar en tu equipo extrae el paquete nuevo en otra carpeta y prueba copias de tus ZIP; no sustituyas tus originales."
+      ]
+    ]
+  },
+  {
+    "title": "Reconstruir una planta CAD",
+    "lead": "Reconstrucción CAD 1 · geometría preliminar con alturas editables.",
+    "blocks": [
+      [
+        "p",
+        "Parte de un DWG/DXF que el importador haya leído correctamente, o de su proyecto CAD ZIP. No reconstruye un edificio desde un PDF ni desde renders. Neuroglancer visualiza datos volumétricos y mallas; no incluye un modelo que interprete planos arquitectónicos. Esta función usa extrusión geométrica, sin aprendizaje automático."
+      ],
+      [
+        "bullets",
+        [
+          "En Plano CAD abre tu archivo, comprueba unidades y selecciona una planta en Espacio / vista. Delimita un rectángulo si el espacio contiene varias plantas.",
+          "Pulsa Reconstruir esta vista en 3D. Se abre Edificio 3D; también puedes usar Usar plano CAD de esta sesión.",
+          "Abre Capas y alturas del modelo preliminar. Selecciona solo las capas que representan perfiles de muro. Muros y Tabla se proponen si existen; confirma su significado.",
+          "Confirma Metros por unidad CAD: 1 para metros, 0.001 para milímetros. Altura general y Base Z se expresan siempre en metros. 3.20 m es un valor provisional editable, no una medición.",
+          "Pulsa Reconstruir con estos valores. Revisa el número de perfiles y las omisiones. Compara cada zona con el CAD fuente.",
+          "Selecciona un componente por clic o por lista. Edita Altura de selección y Base de selección; pulsa Aplicar altura. Excluir componente retira el perfil. Restaurar excluidos recupera los perfiles retirados."
+        ]
+      ],
+      [
+        "p",
+        "Solo se extruyen polilíneas cerradas compatibles. Se omiten trazos abiertos, perfiles que salen del recorte, tipos no compatibles y autointersecciones detectadas. Contornos contenidos en la misma capa se interpretan como huecos del perfil: ese supuesto exige revisión. No se inventan dinteles, ventanas, puertas, losas, cubiertas o niveles."
+      ],
+      [
+        "p",
+        "Altura general y Base Z afectan los componentes sin edición individual; las ediciones individuales se conservan. El ID CAD relaciona el volumen con su trazo fuente. Ver selección en CAD restaura el recorte fuente si hace falta, con aviso al sustituir otro dibujo. La selección se vincula si IDs, capa y coordenadas coinciden."
+      ]
+    ]
+  },
+  {
+    "title": "Guardar reconstrucciones y generar XYZ",
+    "lead": "El ZIP de reconstrucción, el ZIP CAD y el ZIP XYZ se abren en sus respectivas secciones.",
+    "blocks": [
+      [
+        "bullets",
+        [
+          "En Edificio 3D pulsa Guardar reconstrucción ZIP. Incluye el CAD del recorte, capas elegidas, escala, alturas, exclusiones, selección, cortes y cámaras.",
+          "Para continuar en otro equipo, entra a Edificio 3D y pulsa Abrir BIM ZIP. Selecciona el ZIP de reconstrucción; no necesitas volver a cargar el DWG.",
+          "Exportar geometría OBJ guarda todos los triángulos del modelo, incluso componentes ocultos por filtros, en metros y coordenadas locales. No contiene semántica IFC ni un BIM editable.",
+          "Generar cortes XYZ rasteriza el modelo de reconstrucción actual en 64 cortes horizontales; el lado XY mayor usa 256 píxeles. Abre automáticamente XYZ con la separación en milímetros.",
+          "En XYZ recorre Z y consulta XZ/YZ. Guarda su stack ZIP para conservar imágenes, orden, calibración y vistas. Si editas las alturas en Edificio 3D, vuelve a generar los cortes: el stack previo no se actualiza solo."
+        ]
+      ],
+      [
+        "p",
+        "Los cortes generados son una representación derivada de los prismas provisionales, no fotografías ni tomografía. La fila de imagen crece hacia -Y. Los metadatos conservan el origen y sentido de ejes de la conversión; los controles XYZ muestran coordenadas relativas al stack y no sincronizan su cursor con Edificio 3D."
+      ],
+      [
+        "p",
+        "Límites de esta ruta: una planta/recorte por reconstrucción, 2 000 perfiles, 512 vértices por perfil y 50 000 triángulos. Las curvas ya discretizadas conservan su aproximación. El recorte selecciona entidades con al menos un vértice dentro y no corta perfiles para cerrarlos. La extrusión puede representar incorrectamente perfiles solapados, capas mezcladas o huecos mal interpretados."
+      ],
+      [
+        "p",
+        "Prueba recomendada: comprueba una dimensión conocida; identifica un perfil por ID en CAD y 3D; cambia su altura; guarda y reabre el ZIP; confirma que conserva altura y selección; genera XYZ y revisa cortes extremos. Contrasta el resultado con el archivo y documentación original antes de usarlo para evaluar arquitectura."
+      ],
+      [
+        "p",
+        "Para obtener un modelo completo hacen falta alturas verificadas, niveles y clasificación de elementos, además de resolver muros dibujados con líneas abiertas y huecos verticales. Un IFC del proyecto es preferible cuando ya existe. El programa no garantiza la reconstrucción de cualquier DWG ni sustituye validación profesional."
       ]
     ]
   }

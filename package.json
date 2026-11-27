@@ -12,7 +12,7 @@
   },
   "scripts": {
     "build": "node scripts/build-cad.mjs && node scripts/build-production.mjs && node scripts/build-svg.mjs && node scripts/build-stack.mjs && node scripts/build-bim.mjs",
-    "test": "node scripts/test-import.mjs && node scripts/check-general.mjs && node scripts/check-production.mjs && node scripts/check-pdf-wheel.mjs && node scripts/check-stack.mjs && node scripts/check-bim.mjs",
+    "test": "node scripts/test-import.mjs && node scripts/check-general.mjs && node scripts/check-production.mjs && node scripts/check-pdf-wheel.mjs && node scripts/check-stack.mjs && node scripts/check-bim.mjs && node scripts/check-reconstruction.mjs",
     "test:browser": "node scripts/check-browser.mjs && node scripts/check-svg-browser.mjs"
   }
 }

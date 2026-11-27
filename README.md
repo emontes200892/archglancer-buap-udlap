@@ -197,3 +197,14 @@ Límites BIM: 50 MB, 20 000 mallas, 2 millones de triángulos, coordenadas absol
 Verificación: `npm test` incluye la importación IFC real del ejemplo, niveles, IDs, coordenadas, metros/milímetros, material simple y ZIP BIM. Prueba interactiva realizada en modo compatible porque WebGL2 está desactivado en el navegador de pruebas; la ruta GPU requiere validación adicional.
 
 Versión anterior preservada: commit `28576570ad1e3669fe8ef82dca545d96ce4d232b` (navegación XYZ). Esta entrega amplía esa misma aplicación. Guarda tus proyectos antes de cambiar de versión; conserva sus originales.
+
+
+## Reconstrucción CAD 1 · 27 noviembre 2026
+
+Amplía BIM 1 con extrusión revisable de polilíneas cerradas del recorte CAD, selección de capas y escala, alturas generales o por componente, exclusiones y vínculo con IDs CAD. No usa IA ni reconstruye desde PDF/renders; no infiere puertas, ventanas, losas o niveles. No garantiza cualquier DWG.
+
+En Plano CAD: **Reconstruir esta vista en 3D**. En Edificio 3D: revisar capas y alturas, **Guardar reconstrucción ZIP** y **Abrir BIM ZIP**. El ZIP guarda el CAD del recorte y las ediciones, más el estado de vistas. Exportación OBJ en metros. **Generar cortes XYZ** produce 64 cortes de hasta 256 píxeles en el lado mayor; son una rasterización de alturas provisionales y deben regenerarse tras editar. Manual: temas 15 y 16.
+
+Límites: 2 000 perfiles, 512 vértices/perfil, 50 000 triángulos; no se cierran trazos abiertos. Se omiten perfiles fuera del recorte y autointersecciones detectadas. Anillos contenidos de la misma capa se interpretan como huecos y requieren revisión. El recorte conserva entidades con vértices dentro; no realiza recorte geométrico.
+
+Pruebas: `npm test` incorpora volumen de malla hueca, escala mm/m, duplicados, alturas/base, exclusiones y ZIP de reconstrucción. Prueba interactiva con un recorte CAD aportado por el usuario: selección enlazada, altura editable y generación XYZ; modo CPU compatible, GPU pendiente de validación. Datos privados de prueba no se incluyen en esta actualización.
