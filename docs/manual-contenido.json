@@ -5,7 +5,7 @@
     "blocks": [
       [
         "p",
-        "ArchGlancer permite inspeccionar planos, revisar entidades, vincular imágenes, generar PDF desde la geometría recuperada, explorar un stack de imágenes y seleccionar componentes de un edificio IFC. Es un prototipo de investigación inspirado en la navegación por capas y cortes. No es una copia de Neuroglancer ni un sustituto universal de un programa CAD."
+        "Con ArchGlancer puedes abrir un plano, revisar sus capas, asociar renders y preparar un PDF de las plantas que te interesan. También puedes explorar cortes de imágenes, abrir un IFC o dar altura a los perfiles cerrados de tu CAD. La herramienta sigue en desarrollo; conviene comparar lo que muestra con el archivo original."
       ],
       [
         "p",
@@ -26,7 +26,7 @@
       ],
       [
         "p",
-        "Este manual cubre la interfaz, datos necesarios, controles, ejemplos completos, exportación, recuperación y solución de problemas. Las limitaciones forman parte del funcionamiento documentado: un archivo que abre no queda automáticamente validado."
+        "Si es tu primera vez, empieza con los ejemplos de esta página. Los temas 5 a 7 explican cómo trabajar con planos y PDF; los temas 15 y 16, cómo preparar y guardar una reconstrucción 3D."
       ],
       [
         "p",
@@ -35,8 +35,8 @@
     ]
   },
   {
-    "title": "Menú y conservación de la sesión",
-    "lead": "Cambiar de sección no vuelve a cargar el documento.",
+    "title": "Moverte entre secciones",
+    "lead": "Usa el menú superior para volver a lo que estabas revisando.",
     "blocks": [
       [
         "table",
@@ -81,7 +81,7 @@
       ],
       [
         "p",
-        "El estado se mantiene mientras permanezca abierta esta pestaña sin recargar. CAD y XYZ no tienen autoguardado persistente. Edificio 3D tiene una copia local opcional en este navegador; no sincroniza dispositivos. Descargar los ZIP es la forma de conservar copias independientes."
+        "Mientras mantengas abierta esta pestaña, puedes cambiar de sección y seguir trabajando. Antes de recargar o cerrar, guarda los ZIP de CAD y XYZ. Edificio 3D puede recordar el último modelo en este navegador, pero necesitas su ZIP para llevarlo a otro equipo."
       ],
       [
         "p",
@@ -95,7 +95,7 @@
   },
   {
     "title": "Qué datos necesitas",
-    "lead": "Elige los datos según la tarea; una imagen en perspectiva no es un corte volumétrico.",
+    "lead": "Cada sección necesita un tipo de archivo distinto. Esta tabla te ayuda a elegir.",
     "blocks": [
       [
         "table",
@@ -146,7 +146,7 @@
   },
   {
     "title": "Ejemplos precargados y carga automática",
-    "lead": "Cuatro entradas reproducibles para comenzar y compartir una demostración.",
+    "lead": "Puedes probar la herramienta sin cargar tus propios archivos.",
     "blocks": [
       [
         "table",
@@ -193,7 +193,7 @@
   },
   {
     "title": "Abrir y revisar CAD",
-    "lead": "DWG, DXF, SVG y JSON pasan por una representación 2D común.",
+    "lead": "Empieza por comprobar que el plano se abrió completo y con las unidades correctas.",
     "blocks": [
       [
         "bullets",
@@ -215,13 +215,13 @@
       ],
       [
         "p",
-        "Una entidad es un trazo o contorno, no necesariamente una habitación o puerta completa. Un objeto original puede producir varios contornos con un mismo identificador de origen. La visualización no agrupa automáticamente todos los trazos de un componente semántico."
+        "En el visor, una entidad es un trazo o un contorno. Una puerta, por ejemplo, puede estar formada por varias entidades. El programa conserva los identificadores disponibles del archivo, pero todavía no agrupa esos trazos en objetos arquitectónicos completos."
       ]
     ]
   },
   {
     "title": "Revisar componentes y preparar anotaciones",
-    "lead": "Una etiqueta importada, una revisión humana y una referencia independiente son cosas diferentes.",
+    "lead": "Puedes corregir una etiqueta y dejar una nota junto al trazo que estás revisando.",
     "blocks": [
       [
         "bullets",
@@ -243,7 +243,7 @@
       ],
       [
         "p",
-        "Revisado significa que alguien marcó el elemento; no certifica que su etiqueta sea correcta. Para producir ground truth necesitas criterios, revisores independientes y resolución de desacuerdos. No existe todavía un historial de cambios con autores, fechas y versiones."
+        "La marca Revisado sirve para llevar el control de tu trabajo. Si usarás las etiquetas como referencia para una investigación, hace falta una revisión independiente y un criterio para resolver desacuerdos. El programa todavía no guarda el historial de quién cambió cada etiqueta."
       ],
       [
         "p",
@@ -252,8 +252,8 @@
     ]
   },
   {
-    "title": "Pisos, vistas y PDF desde geometría",
-    "lead": "Los PDF se trazan desde los elementos recuperados del CAD, no desde renders.",
+    "title": "Preparar el PDF de una planta",
+    "lead": "El PDF se dibuja con la geometría recuperada del DWG o DXF.",
     "blocks": [
       [
         "bullets",
@@ -285,7 +285,7 @@
   },
   {
     "title": "Renders e imágenes de referencia",
-    "lead": "Una asociación documenta una relación; no calcula una posición espacial.",
+    "lead": "Asocia cada render con la planta o vista a la que corresponde.",
     "blocks": [
       [
         "bullets",
@@ -452,7 +452,7 @@
       ],
       [
         "p",
-        "Para compartir tu trabajo, envía el ZIP correspondiente por el medio que elijas. Compartir la dirección de la web no transmite los archivos locales. El programa procesa estos archivos en el navegador; no los carga deliberadamente en un servidor de conversión."
+        "Para compartir tu trabajo, envía el ZIP de la sección correspondiente. El enlace de la web abre la herramienta, pero no incluye tus planos. Los archivos que eliges se procesan en tu navegador, sin enviarlos a un servicio de conversión."
       ],
       [
         "p",
@@ -521,7 +521,7 @@
   },
   {
     "title": "Edificio 3D: abrir y seleccionar",
-    "lead": "BIM 1 incorpora geometría IFC real y cuatro vistas del mismo edificio.",
+    "lead": "Abre el ejemplo para familiarizarte con las vistas o carga un IFC de tu proyecto.",
     "blocks": [
       [
         "p",
@@ -554,7 +554,7 @@
   },
   {
     "title": "Edificio 3D: guardar y límites",
-    "lead": "La copia local, el ZIP BIM y la versión del programa tienen funciones distintas.",
+    "lead": "Guarda un ZIP si quieres conservar el modelo o abrirlo en otro equipo.",
     "blocks": [
       [
         "bullets",
@@ -579,7 +579,7 @@
       ],
       [
         "p",
-        "Los cortes no generan rellenos de sección, cotas ni PDF constructivos desde IFC. Los PDF de CAD mantienen su flujo anterior. La reconstrucción CAD descrita en los temas 15 y 16 es una extrusión revisable; no hay interpretación universal de DWG, edición BIM, federación de modelos, historial colaborativo o reconocimiento de componentes mediante IA."
+        "Los cortes no generan rellenos de sección, cotas ni PDF constructivos desde IFC. Los PDF de CAD mantienen su flujo anterior. En los temas 15 y 16 encontrarás la reconstrucción desde CAD. Permite revisar perfiles y alturas, aunque todavía no reconoce por sí sola los elementos del edificio ni reúne varios modelos BIM."
       ],
       [
         "p",
@@ -593,7 +593,7 @@
     "blocks": [
       [
         "p",
-        "Parte de un DWG/DXF que el importador haya leído correctamente, o de su proyecto CAD ZIP. No reconstruye un edificio desde un PDF ni desde renders. Neuroglancer visualiza datos volumétricos y mallas; no incluye un modelo que interprete planos arquitectónicos. Esta función usa extrusión geométrica, sin aprendizaje automático."
+        "Primero abre el DWG, DXF o ZIP CAD y comprueba que la planta esté bien dibujada. La reconstrucción toma sus contornos cerrados y les da la altura que indiques. Por ahora trabaja con geometría CAD; no obtiene el edificio a partir de un PDF o de renders ni usa un modelo de aprendizaje automático."
       ],
       [
         "bullets",
@@ -618,7 +618,7 @@
   },
   {
     "title": "Guardar reconstrucciones y generar XYZ",
-    "lead": "El ZIP de reconstrucción, el ZIP CAD y el ZIP XYZ se abren en sus respectivas secciones.",
+    "lead": "Guarda el modelo en Edificio 3D. Si generas cortes, guarda también su ZIP en XYZ.",
     "blocks": [
       [
         "bullets",
@@ -644,7 +644,7 @@
       ],
       [
         "p",
-        "Para obtener un modelo completo hacen falta alturas verificadas, niveles y clasificación de elementos, además de resolver muros dibujados con líneas abiertas y huecos verticales. Un IFC del proyecto es preferible cuando ya existe. El programa no garantiza la reconstrucción de cualquier DWG ni sustituye validación profesional."
+        "Para completar el edificio todavía necesitas confirmar alturas y niveles, identificar los elementos y resolver muros abiertos, puertas y ventanas. Si ya tienes un IFC del proyecto, ábrelo directamente. Revisa siempre la reconstrucción contra la documentación original."
       ]
     ]
   }
